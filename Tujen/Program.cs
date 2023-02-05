@@ -1,12 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using Tujen.Interfaces;
 using Tujen.Services;
 
@@ -16,17 +11,24 @@ namespace Tujen
     {
         private static CancellationTokenSource _cts = new CancellationTokenSource();
 
-        [MTAThread]
+        [STAThread]
         static void Main(string[] args)
         {
             Console.WriteLine("Press F9 to stop the program");
+            Console.WriteLine("Press any key to start the program");
+            Console.ReadLine();
 
             Task.Run(() => ListenForKeyPress(_cts.Token));
 
             var serviceProvider = BuildServiceProvider();
-            var anotherClass = serviceProvider.GetService<CheckCellsService>();
-            anotherClass.Run();
+            var checkCellsService = serviceProvider.GetService<CheckCellsService>();
+            checkCellsService.Run();
 
+            while (!_cts.IsCancellationRequested)
+            {
+                Task.Run(() => ListenForKeyPress(_cts.Token));
+                checkCellsService.Run();
+            }
             Console.WriteLine("Program stopped");
         }
 
@@ -48,6 +50,7 @@ namespace Tujen
             serviceCollection.AddSingleton(typeof(CancellationTokenSource), _cts);
             serviceCollection.AddSingleton<CheckCellsService>();
             serviceCollection.AddSingleton<IValuableItemService, ValuableItemService>();
+            serviceCollection.AddSingleton<IHangleService, HangleService>();
             return serviceCollection.BuildServiceProvider();
         }
     }

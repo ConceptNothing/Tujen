@@ -13,9 +13,7 @@ namespace Tujen.ItemFilters
 
         static Constants()
         {
-            string folderName = "ItemFilters";
-            string fileName = "TestFilter";
-            string filePath = Path.Combine(Environment.CurrentDirectory, folderName, fileName);
+            string filePath = Path.GetFullPath(@"C:\Users\pusca\source\repos\Tujen\Tujen\ItemFilters\TestFilter.txt");
 
             FILTER_ITEMS = new List<string>();
 
@@ -25,7 +23,7 @@ namespace Tujen.ItemFilters
                 string line;
                 while ((line = reader.ReadLine()) != null)
                 {
-                    FILTER_ITEMS.Add(line);
+                    FILTER_ITEMS.Add(line.ToLower());
                 }
             }
         }

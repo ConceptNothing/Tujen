@@ -25,11 +25,20 @@ namespace Tujen.Services
             currentRerollValuableItems.Clear();
         }
 
-        public Task<bool> CreateHangleItem(string itemText,Point itemScreenPoint)
+        public Task<bool> CreateValuableItem(string itemText,Point itemScreenPoint)
         {
-            var itemName = Constants.FILTER_ITEMS.FirstOrDefault(line => itemText.Contains(line));
+            if (itemText == null || itemText == string.Empty)
+            {
+                return Task.FromResult(false);
+            }
+
+            var str = itemText.ToLower();
+
+            var itemName = Constants.FILTER_ITEMS.FirstOrDefault(line => str.Contains(line));
             if (itemName!=null&&itemName!=string.Empty)
             {
+                var item = new ValuableItem { Name=itemName,CellPosition=itemScreenPoint };
+                AddToList(item);
                 return Task.FromResult(true);
             }
             else

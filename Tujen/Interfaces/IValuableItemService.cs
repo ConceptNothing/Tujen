@@ -13,6 +13,6 @@ namespace Tujen.Interfaces
         void AddToList(ValuableItem item);
         void CleanList();
         List<ValuableItem> GetAllItemsFromList();
-        Task<bool> CreateHangleItem(string itemText,Point itemPoint);
+        Task<bool> CreateValuableItem(string itemText,Point itemPoint);
     }
 }
