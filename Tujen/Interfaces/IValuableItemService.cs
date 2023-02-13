@@ -12,7 +12,7 @@ namespace Tujen.Interfaces
     {
         void AddToList(ValuableItem item);
         void CleanList();
-        List<ValuableItem> GetAllItemsFromList();
+        List<ValuableItem> GetAllItems();
         Task<bool> CreateValuableItem(string itemText,Point itemPoint);
     }
 }

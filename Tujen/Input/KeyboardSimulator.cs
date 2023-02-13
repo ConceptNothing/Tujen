@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -18,6 +19,16 @@ namespace Tujen.Input
         private const int KEYEVENTF_EXTENDEDKEY = 0x1;
         private const int KEYEVENTF_KEYUP = 0x2;
 
+        public static void PressCtrl()
+        {
+            PressCtrlDown();
+            PressCtrlUp();
+        }
+        public static void PressC() 
+        {
+            Press_C_Down();
+            Press_C_Up();
+        }
         public static void PressCtrlUp()
         {
             keybd_event((byte)VK_CONTROL, 0x45, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP, (UIntPtr)0);

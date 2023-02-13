@@ -2,6 +2,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Tujen.Input;
 using Tujen.Interfaces;
 using Tujen.Services;
 
@@ -17,7 +18,6 @@ namespace Tujen
             Console.WriteLine("Press F9 to stop the program");
             Console.WriteLine("Press any key to start the program");
             Console.ReadLine();
-
             Task.Run(() => ListenForKeyPress(_cts.Token));
 
             var serviceProvider = BuildServiceProvider();
@@ -29,6 +29,8 @@ namespace Tujen
                 Task.Run(() => ListenForKeyPress(_cts.Token));
                 checkCellsService.Run();
             }
+            KeyboardSimulator.PressCtrlUp();
+            KeyboardSimulator.Press_C_Up();
             Console.WriteLine("Program stopped");
         }
 

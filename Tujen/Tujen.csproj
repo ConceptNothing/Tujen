@@ -97,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IHangleService.cs" />
+    <Compile Include="Bot\PixelBot.cs" />
     <Compile Include="Services\CheckCellsService.cs" />
     <Compile Include="Input\InputState.cs" />
     <Compile Include="Input\KeyboardSimulator.cs" />
@@ -117,6 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ItemFilters\TestFilter.txt" />
+    <Content Include="Bot\Src\RedHangleStrip.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Selenium.WebDriver.4.8.0\build\Selenium.WebDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.4.8.0\build\Selenium.WebDriver.targets')" />
