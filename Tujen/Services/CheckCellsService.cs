@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media.Media3D;
+using Tujen.Bot;
 using Tujen.Interfaces;
 using Cursor = System.Windows.Forms.Cursor;
 using KeyboardSimulator = Tujen.Input.KeyboardSimulator;
@@ -19,7 +21,7 @@ namespace Tujen.Services
         private readonly IValuableItemService valuableItemService;
         private int cellCount=0;
         private Point FIRST_CELL_POINTER = new Point {X=54,Y=190 };
-        private const int PIXELS_TO_SKIP= 28;
+        private const int PIXELS_TO_SKIP= 29;
         private const int MOVE_MOUSE_TIME_MILLISECONDS = 5;
         public CheckCellsService(CancellationTokenSource cts,
             IValuableItemService valuableItemService)
@@ -33,10 +35,33 @@ namespace Tujen.Services
             while (!cts.IsCancellationRequested)
             {
                 WindowHelper.GetWindowHandle(WindowHelper.WINDOW_NAME);
+                //Thread.Sleep(2000);
+
+                //var itemCount = 10;
+                //for (int i = 0; i < itemCount; i++)
+                //{
+                //    for(int t = 0; t < 12; t++)
+                //    {
+                //        MouseSimulator.MouseWheelDown();
+                //    }
+                //    MouseSimulator.MouseWheelDown();
+                //    while (PixelBot.ContainsImage())
+                //    {
+                //        MouseSimulator.MouseWheelDown();
+                //        Thread.Sleep(1000);
+                //        MouseSimulator.LeftClick();
+                //        Thread.Sleep(1000);
+                //    }
+                //    //incomingList.RemoveAt(i);
+                //    itemCount--;
+                //    i--;
+                //}
+
+
                 CopyToClipboardItem(cts.Token);
                 cellCount = 0;
             }
-        }
+        
 
         private void CopyToClipboardItem(CancellationToken ct)
         {
@@ -53,11 +78,11 @@ namespace Tujen.Services
             Thread.Sleep(MOVE_MOUSE_TIME_MILLISECONDS);
 
             KeyboardSimulator.PressCtrlDown();
-            Thread.Sleep(10);
+            Thread.Sleep(5);
             KeyboardSimulator.Press_C_Down();
-            Thread.Sleep(10);
+            Thread.Sleep(5);
             KeyboardSimulator.Press_C_Up();
-            Thread.Sleep(10);
+            Thread.Sleep(5);
             KeyboardSimulator.PressCtrlUp();
 
             string clipboardText = Clipboard.GetText();

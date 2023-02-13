@@ -47,7 +47,7 @@ namespace Tujen.Services
             }
         }
 
-        public List<ValuableItem> GetAllItemsFromList()
+        public List<ValuableItem> GetAllItems()
         {
             return currentRerollValuableItems;
         }
